@@ -207,11 +207,11 @@
       });
     }
   }
-})({"5DuvQ":[function(require,module,exports,__globalThis) {
+})({"dZLCZ":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
-var HMR_SERVER_PORT = 1234;
+var HMR_SERVER_PORT = 51559;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "439701173a9199ea";
 var HMR_USE_SSE = false;
@@ -714,6 +714,9 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"7dWZ8":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _iconsSvg = require("../img/icons.svg");
+var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
 const recipeContainer = document.querySelector('.recipe');
 const timeout = function(s) {
     return new Promise(function(_, reject) {
@@ -721,9 +724,149 @@ const timeout = function(s) {
             reject(new Error(`Request took too long! Timeout after ${s} second`));
         }, s * 1000);
     });
-}; // https://forkify-api.herokuapp.com/v2
- ///////////////////////////////////////
+};
+// https://forkify-api.herokuapp.com/v2
+///////////////////////////////////////
+async function showRecipe() {
+    try {
+        renderSpinner(recipeContainer);
+        const resp = await fetch('https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886');
+        const data = await resp.json();
+        let recipe = data.data.recipe;
+        recipe = {
+            id: recipe.id,
+            title: recipe.title,
+            publisher: recipe.publisher,
+            sourceUrl: recipe.source_url,
+            image: recipe.image_url,
+            servings: recipe.servings,
+            cookTime: recipe.cooking_time,
+            ingredients: recipe.ingredients
+        };
+        let markup = `
+      <figure class="recipe__fig">
+          <img src="${recipe.image}" alt="Tomato" class="recipe__img" />
+          <h1 class="recipe__title">
+            <span>${recipe.title}</span>
+          </h1>
+        </figure>
 
-},{}]},["5DuvQ","7dWZ8"], "7dWZ8", "parcelRequire3a11", {})
+        <div class="recipe__details">
+          <div class="recipe__info">
+            <svg class="recipe__info-icon">
+              <use href="${(0, _iconsSvgDefault.default)}#icon-clock"></use>
+            </svg>
+            <span class="recipe__info-data recipe__info-data--minutes">${recipe.cookTime}</span>
+            <span class="recipe__info-text">minutes</span>
+          </div>
+          <div class="recipe__info">
+            <svg class="recipe__info-icon">
+              <use href="${(0, _iconsSvgDefault.default)}#icon-users"></use>
+            </svg>
+            <span class="recipe__info-data recipe__info-data--people">${recipe.servings}</span>
+            <span class="recipe__info-text">servings</span>
+
+            <div class="recipe__info-buttons">
+              <button class="btn--tiny btn--increase-servings">
+                <svg>
+                  <use href="${(0, _iconsSvgDefault.default)}#icon-minus-circle"></use>
+                </svg>
+              </button>
+              <button class="btn--tiny btn--increase-servings">
+                <svg>
+                  <use href="${(0, _iconsSvgDefault.default)}#icon-plus-circle"></use>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="recipe__user-generated">
+            <svg>
+              <use href="${(0, _iconsSvgDefault.default)}#icon-user"></use>
+            </svg>
+          </div>
+          <button class="btn--round">
+            <svg class="">
+              <use href="${(0, _iconsSvgDefault.default)}#icon-bookmark-fill"></use>
+            </svg>
+          </button>
+        </div>
+        <div class="recipe__ingredients">
+
+        <!-- explicar esto--> 
+  <h2 class="heading--2">Recipe ingredients</h2>
+  <ul class="recipe__ingredient-list">
+
+    ${recipe.ingredients.map((ing)=>{
+            // Paso a: Usamos map con una función flecha (aquí llamada 'ing' por ingrediente)
+            return `
+      <li class="recipe__ingredient">
+      <svg class="recipe__icon">
+        <use href="${0, _iconsSvgDefault.default}#icon-check"></use>
+      </svg>
+      <div class="recipe__quantity">${ing.quantity ? ing.quantity : ''}</div>
+      <div class="recipe__description">
+        <span class="recipe__unit">${ing.unit}</span>
+        ${ing.description}
+      </div>
+    </li>
+      `;
+        }).join('')} 
+    </ul>
+</div>
+    `;
+        console.log("La respuesta es: ", resp);
+        console.log("La data es: ", data);
+        console.log("El recipe es: ", recipe);
+        recipeContainer.innerHTML = '';
+        recipeContainer.insertAdjacentHTML('afterbegin', markup);
+    } catch (err) {
+        alert("error: ", err);
+    }
+}
+showRecipe();
+function renderSpinner(parentEl) {
+    const markup = `
+    <div class="spinner">
+      <svg>
+        <use href="${(0, _iconsSvgDefault.default)}#icon-loader"></use>
+      </svg>
+    </div>
+  `;
+    parentEl.innerHTML = '';
+    parentEl.insertAdjacentHTML('afterbegin', markup);
+}
+
+},{"../img/icons.svg":"d6UCS","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"d6UCS":[function() {},{}],"jnFvT":[function(require,module,exports,__globalThis) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}]},["dZLCZ","7dWZ8"], "7dWZ8", "parcelRequire3a11", {})
 
 //# sourceMappingURL=forkify.4a59a05f.js.map
