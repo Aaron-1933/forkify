@@ -177,7 +177,7 @@
 
   // Only insert newRequire.load when it is actually used.
   // The code in this file is linted against ES5, so dynamic import is not allowed.
-  function $parcel$resolve(url) {  url = importMap[url] || url;  return import.meta.resolve(distDir + url);}newRequire.resolve = $parcel$resolve;
+  // INSERT_LOAD_HERE
 
   Object.defineProperty(newRequire, 'root', {
     get: function () {
@@ -715,7 +715,6 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"7dWZ8":[function(require,module,exports,__globalThis) {
 var _modelJs = require("./model.js");
-const icons = new URL(require("44ee9c28041c06b1")).href;
 const recipeContainer = document.querySelector('.recipe');
 async function showRecipe() {
     try {
@@ -730,22 +729,7 @@ async function showRecipe() {
         const recipe = _modelJs.state.recipe; //revisar
         // 5) Renderizar
         const markup = `
-      <figure class="recipe__fig">
-        <img src="${recipe.image}" alt="${recipe.title}" class="recipe__img" />
-        <h1 class="recipe__title">
-          <span>${recipe.title}</span>
-        </h1>
-      </figure>
-
-      <div class="recipe__details">
-        <div class="recipe__info">
-          <svg class="recipe__info-icon">
-            <use href="${icons}#icon-clock"></use>
-          </svg>
-          <span class="recipe__info-data recipe__info-data--minutes">${recipe.cookTime}</span>
-          <span class="recipe__info-text">minutes</span>
-        </div>
-      </div>
+   
     `;
         recipeContainer.innerHTML = '';
         recipeContainer.insertAdjacentHTML('afterbegin', markup);
@@ -754,26 +738,12 @@ async function showRecipe() {
         alert(err.message);
     }
 }
-function renderSpinner(parentEl) {
-    const markup = `
-    <div class="spinner">
-      <svg>
-        <use href="${icons}#icon-loader"></use>
-      </svg>
-    </div>
-  `;
-    parentEl.innerHTML = '';
-    parentEl.insertAdjacentHTML('afterbegin', markup);
-}
 [
     'hashchange',
     'load'
 ].forEach((ev)=>window.addEventListener(ev, showRecipe));
 
-},{"44ee9c28041c06b1":"aob6l","./model.js":"3QBkH"}],"aob6l":[function(require,module,exports,__globalThis) {
-module.exports = module.bundle.resolve("icons.7bd9dd61.svg") + "?" + Date.now();
-
-},{}],"3QBkH":[function(require,module,exports,__globalThis) {
+},{"./model.js":"3QBkH"}],"3QBkH":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "state", ()=>state);
@@ -833,6 +803,6 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["5DuvQ","7dWZ8"], "7dWZ8", "parcelRequire3a11", {}, "./", "/")
+},{}]},["5DuvQ","7dWZ8"], "7dWZ8", "parcelRequire3a11", {})
 
 //# sourceMappingURL=forkify.4a59a05f.js.map
