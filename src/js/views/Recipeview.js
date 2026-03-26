@@ -1,8 +1,8 @@
-import { recipeContainer } from './controller.js';
-const icons = new URL('../img/icons.svg', import.meta.url).href;
+import Fraction from 'fraction.js';
+const icons = new URL('../../img/icons.svg', import.meta.url).href;
 class RecipeView {
-  #parentElement = recipeContainer;
   #data;
+  #parentElement = document.querySelector('.recipe');
 
 render(data) {
   this.#data = data;
@@ -12,19 +12,19 @@ render(data) {
   const markup = this.#generateMarkup();
 
   this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+}
 
-  function renderSpinner() {
-  const markup = `
-    <div class="spinner">
-      <svg>
-        <use href="${icons}#icon-loader"></use>
-      </svg>
-    </div>
-  `;
-  this.#parentElement.innerHTML = '';
-  this.#parentElement.insertAdjacentHTML('afterbegin', markup);
-}
-}
+  renderSpinner() {
+    const markup = `
+      <div class="spinner">
+        <svg>
+          <use href="${icons}#icon-loader"></use>
+        </svg>
+      </div>
+    `;
+    this.#parentElement.innerHTML = '';
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+  }
 
 #clean() {
     this.#parentElement.innerHTML = '';
@@ -85,7 +85,7 @@ ${ this.#data.ingredients
  <svg class="recipe__icon">
  <use href="${icons}#icon-check"></use>
  </svg>
- <div class="recipe__quantity">${ingredient.quantity}</div>
+ <div class="recipe__quantity">${ingredient.quantity ? new Fraction(ingredient.quantity).toFraction(true) : ''}</div>
  <div class="recipe__description">
  <span class="recipe__unit">${ingredient.unit}</span>
 ${ingredient.description}
@@ -115,6 +115,6 @@ ${ingredient.description}
  </a>
  </div>`;
   }
-
-
 }
+
+export default new RecipeView(); 
