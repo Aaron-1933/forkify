@@ -19,12 +19,28 @@ async function controlRecipes() {
     // 4) Leer la receta desde el state
     recipeView.render(model.state.recipe); //revisar
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    recipeView.renderError();
   }
 }
+  const controlSearchResults = async function () {
+  try {
+    const query = 'pizza'; // 👈 temporal para prueba
+
+    await model.loadSearchResults(query);
+
+    console.log(model.state.search.results);
+
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 
+  function init() {
+    recipeView.addHandlerRender(controlRecipes)
+  }
+  init();
 
-['hashchange', 'load'].forEach(ev => window.addEventListener(ev, controlRecipes));
+
+ // controlSearchResults();
 
