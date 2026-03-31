@@ -4,10 +4,7 @@ export const getJSON = async function (url) {
   try {
     const fetchPro = fetch(url);
 
-    const res = await Promise.race([
-      fetchPro,
-      timeout(TIMEOUT_SEC)
-    ]);
+    const res = await Promise.race([fetchPro, timeout(TIMEOUT_SEC)]);
 
     const data = await res.json();
 
@@ -26,6 +23,3 @@ export const timeout = function (s) {
     }, s * 1000);
   });
 };
-
-
-//avance 2 / 05
