@@ -9,6 +9,9 @@
     "start": "parcel index.html",
   "build": "npx parcel build index.html"
   },
+  "engines": {
+  "node": ">=18"
+},
   "devDependencies": {
     "@parcel/transformer-sass": "^2.16.4",
     "parcel": "^2.16.4"
