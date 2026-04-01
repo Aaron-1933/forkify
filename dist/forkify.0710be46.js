@@ -207,10 +207,10 @@
       });
     }
   }
-})({"1mxfe":[function(require,module,exports,__globalThis) {
+})({"frCey":[function(require,module,exports,__globalThis) {
 var HMR_HOST = null;
-var HMR_PORT = 64320;
-var HMR_SERVER_PORT = 64320;
+var HMR_PORT = 1234;
+var HMR_SERVER_PORT = 1234;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "4345934e17270304";
 var HMR_USE_SSE = false;
@@ -723,6 +723,8 @@ var _resultsViewJs = require("./views/ResultsView.js");
 var _resultsViewJsDefault = parcelHelpers.interopDefault(_resultsViewJs);
 var _paginationViewJs = require("./views/paginationView.js");
 var _paginationViewJsDefault = parcelHelpers.interopDefault(_paginationViewJs);
+var _iconsSvg = require("url:../img/icons.svg");
+var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
 const recipeContainer = document.querySelector('.recipe');
 const query = (0, _searchViewJsDefault.default).getQuery();
 async function controlRecipes() {
@@ -761,7 +763,7 @@ function init() {
 }
 init();
 
-},{"./model.js":"506Xi","./views/Recipeview.js":"faDDE","./views/searchView.js":"pQ6qA","./views/ResultsView.js":"fKeTX","./views/paginationView.js":"22jy7","@parcel/transformer-js/src/esmodule-helpers.js":"laylR"}],"506Xi":[function(require,module,exports,__globalThis) {
+},{"./model.js":"506Xi","./views/Recipeview.js":"faDDE","./views/searchView.js":"pQ6qA","./views/ResultsView.js":"fKeTX","./views/paginationView.js":"22jy7","@parcel/transformer-js/src/esmodule-helpers.js":"laylR","url:../img/icons.svg":"3SlHl"}],"506Xi":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "state", ()=>state);
@@ -1964,7 +1966,7 @@ class PaginationView extends (0, _viewJsDefault.default) {
 }
 exports.default = new PaginationView();
 
-},{"./View.js":"9HiAI","url:../../img/icons.svg":"3SlHl","@parcel/transformer-js/src/esmodule-helpers.js":"laylR"}]},["1mxfe","9D1Ak"], "9D1Ak", "parcelRequire3a11", {}, "./", "/")
+},{"./View.js":"9HiAI","url:../../img/icons.svg":"3SlHl","@parcel/transformer-js/src/esmodule-helpers.js":"laylR"}]},["frCey","9D1Ak"], "9D1Ak", "parcelRequire3a11", {}, "./", "/")
 let {} = parcelRequire3a11("9D1Ak");
 export {};
 

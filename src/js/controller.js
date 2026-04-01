@@ -3,6 +3,7 @@ import recipeView from './views/Recipeview.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/ResultsView.js';
 import paginationView from './views/paginationView.js';
+import icons from 'url:../img/icons.svg';
 
 const recipeContainer = document.querySelector('.recipe');
 const query = searchView.getQuery();
