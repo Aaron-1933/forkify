@@ -763,7 +763,7 @@ function init() {
 }
 init();
 
-},{"./model.js":"506Xi","./views/Recipeview.js":"faDDE","./views/searchView.js":"pQ6qA","./views/ResultsView.js":"fKeTX","./views/paginationView.js":"22jy7","@parcel/transformer-js/src/esmodule-helpers.js":"laylR","url:../img/icons.svg":"3SlHl"}],"506Xi":[function(require,module,exports,__globalThis) {
+},{"./model.js":"506Xi","./views/Recipeview.js":"faDDE","./views/searchView.js":"pQ6qA","./views/ResultsView.js":"fKeTX","./views/paginationView.js":"22jy7","url:../img/icons.svg":"3SlHl","@parcel/transformer-js/src/esmodule-helpers.js":"laylR"}],"506Xi":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "state", ()=>state);
@@ -1046,72 +1046,7 @@ ${this._data.ingredients.map((ingredient)=>{
 }
 exports.default = new RecipeView();
 
-},{"./View.js":"9HiAI","3d96e8e01a43e185":"hDBLe","@parcel/transformer-js/src/esmodule-helpers.js":"laylR","../lib/fraction.js":"aHS2R"}],"9HiAI":[function(require,module,exports,__globalThis) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _iconsSvg = require("url:../../img/icons.svg");
-var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
-class View {
-    _data;
-    render(data) {
-        if (!data || Array.isArray(data) && data.length === 0) return this.renderError();
-        this._data = data;
-        this._clear();
-        const markup = this._generateMarkup();
-        this._parentElement.insertAdjacentHTML('afterbegin', markup);
-    }
-    _clear() {
-        this._parentElement.innerHTML = '';
-    }
-    renderSpinner() {
-        const markup = `
-      <div class="spinner">
-        <svg>
-          <use href="${(0, _iconsSvgDefault.default)}#icon-loader"></use>
-        </svg>
-      </div>
-    `;
-        this._clear();
-        this._parentElement.insertAdjacentHTML('afterbegin', markup);
-    }
-    renderError(message = this._errorMessage) {
-        const markup = `
-      <div class="error">
-        <div>
-          <svg>
-            <use href="${(0, _iconsSvgDefault.default)}#icon-alert-triangle"></use>
-          </svg>
-        </div>
-        <p>${message}</p>
-      </div>
-    `;
-        this._clear();
-        this._parentElement.insertAdjacentHTML('afterbegin', markup);
-    }
-    renderMessage(message = this._message) {
-        const markup = `
-      <div class="message">
-        <div>
-          <svg>
-            <use href="${(0, _iconsSvgDefault.default)}#icon-smile"></use>
-          </svg>
-        </div>
-        <p>${message}</p>
-      </div>
-    `;
-        this._clear();
-        this._parentElement.insertAdjacentHTML('afterbegin', markup);
-    }
-}
-exports.default = View;
-
-},{"url:../../img/icons.svg":"3SlHl","@parcel/transformer-js/src/esmodule-helpers.js":"laylR"}],"3SlHl":[function(require,module,exports,__globalThis) {
-module.exports = module.bundle.resolve("icons.ed9e720e.svg") + "?" + Date.now();
-
-},{}],"hDBLe":[function(require,module,exports,__globalThis) {
-module.exports = module.bundle.resolve("icons.170d1204.svg") + "?" + Date.now();
-
-},{}],"aHS2R":[function(require,module,exports,__globalThis) {
+},{"../lib/fraction.js":"aHS2R","./View.js":"9HiAI","3d96e8e01a43e185":"hDBLe","@parcel/transformer-js/src/esmodule-helpers.js":"laylR"}],"aHS2R":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>Fraction);
@@ -1859,7 +1794,68 @@ Fraction.prototype = {
     }
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"laylR"}],"pQ6qA":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"laylR"}],"9HiAI":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const icons = new URL(require("fcd5427331ff87b4")).href;
+class View {
+    _data;
+    render(data) {
+        if (!data || Array.isArray(data) && data.length === 0) return this.renderError();
+        this._data = data;
+        this._clear();
+        const markup = this._generateMarkup();
+        this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    }
+    _clear() {
+        this._parentElement.innerHTML = '';
+    }
+    renderSpinner() {
+        const markup = `
+      <div class="spinner">
+        <svg>
+          <use href="${icons}#icon-loader"></use>
+        </svg>
+      </div>
+    `;
+        this._clear();
+        this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    }
+    renderError(message = this._errorMessage) {
+        const markup = `
+      <div class="error">
+        <div>
+          <svg>
+            <use href="${icons}#icon-alert-triangle"></use>
+          </svg>
+        </div>
+        <p>${message}</p>
+      </div>
+    `;
+        this._clear();
+        this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    }
+    renderMessage(message = this._message) {
+        const markup = `
+      <div class="message">
+        <div>
+          <svg>
+            <use href="${icons}#icon-smile"></use>
+          </svg>
+        </div>
+        <p>${message}</p>
+      </div>
+    `;
+        this._clear();
+        this._parentElement.insertAdjacentHTML('afterbegin', markup);
+    }
+}
+exports.default = View;
+
+},{"fcd5427331ff87b4":"hDBLe","@parcel/transformer-js/src/esmodule-helpers.js":"laylR"}],"hDBLe":[function(require,module,exports,__globalThis) {
+module.exports = module.bundle.resolve("icons.170d1204.svg") + "?" + Date.now();
+
+},{}],"pQ6qA":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 class SearchView {
@@ -1916,8 +1912,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _viewJs = require("./View.js");
 var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
-var _iconsSvg = require("url:../../img/icons.svg");
-var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
+const icons = new URL(require("d937d4480f9ab689")).href;
 class PaginationView extends (0, _viewJsDefault.default) {
     _parentElement = document.querySelector('.pagination');
     addHandlerClick(handler) {
@@ -1935,14 +1930,14 @@ class PaginationView extends (0, _viewJsDefault.default) {
         <button data-goto="${curPage + 1}" class="btn--inline pagination__btn--next">
           <span>Page ${curPage + 1}</span>
           <svg class="search__icon">
-            <use href="${0, _iconsSvgDefault.default}#icon-arrow-right"></use>
+            <use href="${icons}#icon-arrow-right"></use>
           </svg>
         </button>
       `;
         if (curPage === numPages && numPages > 1) return `
         <button data-goto="${curPage - 1}" class="btn--inline pagination__btn--prev">
           <svg class="search__icon">
-            <use href="${0, _iconsSvgDefault.default}#icon-arrow-left"></use>
+            <use href="${icons}#icon-arrow-left"></use>
           </svg>
           <span>Page ${curPage - 1}</span>
         </button>
@@ -1950,14 +1945,14 @@ class PaginationView extends (0, _viewJsDefault.default) {
         if (curPage < numPages) return `
         <button data-goto="${curPage - 1}" class="btn--inline pagination__btn--prev">
           <svg class="search__icon">
-            <use href="${0, _iconsSvgDefault.default}#icon-arrow-left"></use>
+            <use href="${icons}#icon-arrow-left"></use>
           </svg>
           <span>Page ${curPage - 1}</span>
         </button>
         <button data-goto="${curPage + 1}" class="btn--inline pagination__btn--next">
           <span>Page ${curPage + 1}</span>
           <svg class="search__icon">
-            <use href="${0, _iconsSvgDefault.default}#icon-arrow-right"></use>
+            <use href="${icons}#icon-arrow-right"></use>
           </svg>
         </button>
       `;
@@ -1966,7 +1961,10 @@ class PaginationView extends (0, _viewJsDefault.default) {
 }
 exports.default = new PaginationView();
 
-},{"./View.js":"9HiAI","url:../../img/icons.svg":"3SlHl","@parcel/transformer-js/src/esmodule-helpers.js":"laylR"}]},["frCey","9D1Ak"], "9D1Ak", "parcelRequire3a11", {}, "./", "/")
+},{"./View.js":"9HiAI","d937d4480f9ab689":"hDBLe","@parcel/transformer-js/src/esmodule-helpers.js":"laylR"}],"3SlHl":[function(require,module,exports,__globalThis) {
+module.exports = module.bundle.resolve("icons.ed9e720e.svg") + "?" + Date.now();
+
+},{}]},["frCey","9D1Ak"], "9D1Ak", "parcelRequire3a11", {}, "./", "/")
 let {} = parcelRequire3a11("9D1Ak");
 export {};
 
